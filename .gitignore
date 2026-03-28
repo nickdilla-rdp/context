@@ -1,0 +1,20 @@
+# Rust / Tauri
+src-tauri/target/
+src-tauri/gen/
+
+# Node
+node_modules/
+.tauri/
+
+# Fonts (downloaded separately)
+src/fonts/*.woff2
+src/fonts/fonts.css
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.msi
+*.exe
+!src-tauri/assets/
