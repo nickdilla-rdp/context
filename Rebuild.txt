@@ -1,2 +1,0 @@
-cd C:\Users\rxylg\Downloads\context-tauri
-npx tauri dev

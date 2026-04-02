@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/WixToolset.UI.wixext.nuspec" Id="RFEFFA7DD0D8D89A3" />
-  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/f1e4e633b33340c78b14b9e9cf821ba1.psmdcp" Id="R5477F7993E61BDA4" />
-</Relationships>
