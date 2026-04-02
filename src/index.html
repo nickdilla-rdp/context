@@ -4784,18 +4784,21 @@ to   { opacity: 1; transform: translateY(0) scale(1); }
         <div><div class="set-lbl" data-i18n="settings.tab.lang">Язык</div><div class="set-sub" data-i18n="settings.lang.desc">Выберите язык интерфейса приложения. Изменение применяется мгновенно.</div></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
-        <button class="lang-opt-btn" id="lang-btn-ru" onclick="setAppLang('ru')" style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--b3);border:2px solid var(--a);border-radius:var(--r2);cursor:pointer;transition:all .2s">
-          <span style="font-size:24px">🇷🇺</span>
+        <button class="lang-opt-btn" id="lang-btn-ru" onclick="setAppLang('ru')" style="display:flex;align-items:center;gap:14px;padding:15px 18px;background:linear-gradient(135deg,var(--b4),var(--b3));border:2px solid var(--a);border-radius:var(--r3);cursor:pointer;transition:all .25s;box-shadow:0 0 20px rgba(110,142,247,.22),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:var(--lg-highlight);pointer-events:none"></div>
+          <span style="font-size:26px;line-height:1;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))">🇷🇺</span>
           <div style="text-align:left">
-            <div style="font-size:14px;font-weight:600;color:var(--t1)">Русский</div>
-            <div style="font-size:11px;color:var(--t3)">Russian</div>
+            <div style="font-size:14px;font-weight:700;color:var(--t1);letter-spacing:.01em">Русский</div>
+            <div style="font-size:11px;color:var(--a2);margin-top:1px;font-weight:500">Russian</div>
           </div>
+          <div style="position:absolute;right:14px;width:7px;height:7px;border-radius:50%;background:var(--a);box-shadow:0 0 8px var(--a)"></div>
         </button>
-        <button class="lang-opt-btn" id="lang-btn-en" onclick="setAppLang('en')" style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--b3);border:2px solid var(--e1);border-radius:var(--r2);cursor:pointer;transition:all .2s">
-          <span style="font-size:24px">🇬🇧</span>
+        <button class="lang-opt-btn" id="lang-btn-en" onclick="setAppLang('en')" style="display:flex;align-items:center;gap:14px;padding:15px 18px;background:var(--b3);border:2px solid var(--e1);border-radius:var(--r3);cursor:pointer;transition:all .25s;box-shadow:0 2px 8px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:var(--lg-highlight);pointer-events:none;opacity:0.4"></div>
+          <span style="font-size:26px;line-height:1;filter:drop-shadow(0 1px 3px rgba(0,0,0,.4))">🇬🇧</span>
           <div style="text-align:left">
-            <div style="font-size:14px;font-weight:600;color:var(--t1)">English</div>
-            <div style="font-size:11px;color:var(--t3)">Английский</div>
+            <div style="font-size:14px;font-weight:700;color:var(--t2);letter-spacing:.01em">English</div>
+            <div style="font-size:11px;color:var(--t3);margin-top:1px;font-weight:500">Английский</div>
           </div>
         </button>
       </div>
@@ -8825,6 +8828,10 @@ function _loadStateFromFile(){
         if(S.settings.apiKey){ const inp=$('api-key-input'); if(inp) inp.value=S.settings.apiKey; }
         _repairDeletedItems();
         console.log('[LOAD] state applied, prompts:', S.prompts.length, 'folders:', S.folders.length);
+        // Apply saved language after state is fully loaded
+        if(S.settings && S.settings.lang && S.settings.lang !== 'ru') {
+          applyLang(S.settings.lang);
+        }
       } catch(e){ console.warn('State parse error:', e); }
     } else {
       // Fresh install — apply default texture background
@@ -8895,6 +8902,10 @@ function load(){
     }
     if(d.settings?.apiKey){ const inp=$('api-key-input'); if(inp) inp.value=d.settings.apiKey; }
     _repairDeletedItems();
+    // Apply saved language after state is loaded
+    if(S.settings && S.settings.lang && S.settings.lang !== 'ru') {
+      applyLang(S.settings.lang);
+    }
   } catch(e){}
   _stateLoaded = true;
   _hideSplash();
@@ -9921,11 +9932,40 @@ function setAppLang(lang) {
   S.settings.lang = lang;
   save();
   applyLang(lang);
-  // Update lang buttons
+  _updateLangBtns(lang);
+}
+
+function _updateLangBtns(lang) {
   const ru = document.getElementById('lang-btn-ru');
   const en = document.getElementById('lang-btn-en');
-  if(ru) ru.style.borderColor = lang==='ru' ? 'var(--a)' : 'var(--e1)';
-  if(en) en.style.borderColor = lang==='en' ? 'var(--a)' : 'var(--e1)';
+  if(ru) {
+    ru.style.borderColor  = lang==='ru' ? 'var(--a)' : 'var(--e1)';
+    ru.style.background   = lang==='ru' ? 'linear-gradient(135deg,var(--b4),var(--b3))' : 'var(--b3)';
+    ru.style.boxShadow    = lang==='ru' ? '0 0 20px rgba(110,142,247,.22),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08)' : '0 2px 8px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)';
+    const dot = ru.querySelector('div[style*="border-radius:50%"]');
+    if(dot) dot.style.display = lang==='ru' ? 'block' : 'none';
+    const name = ru.querySelectorAll('div[style*="font-weight:700"]')[0];
+    if(name) name.style.color = lang==='ru' ? 'var(--t1)' : 'var(--t2)';
+    const sub  = ru.querySelectorAll('div[style*="font-weight:500"]')[0];
+    if(sub)  sub.style.color  = lang==='ru' ? 'var(--a2)' : 'var(--t3)';
+  }
+  if(en) {
+    en.style.borderColor  = lang==='en' ? 'var(--a)' : 'var(--e1)';
+    en.style.background   = lang==='en' ? 'linear-gradient(135deg,var(--b4),var(--b3))' : 'var(--b3)';
+    en.style.boxShadow    = lang==='en' ? '0 0 20px rgba(110,142,247,.22),0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08)' : '0 2px 8px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)';
+    // add dot to en if not exists
+    let dotEn = en.querySelector('div[style*="border-radius:50%"]');
+    if(!dotEn) {
+      dotEn = document.createElement('div');
+      dotEn.style.cssText = 'position:absolute;right:14px;width:7px;height:7px;border-radius:50%;background:var(--a);box-shadow:0 0 8px var(--a)';
+      en.appendChild(dotEn);
+    }
+    dotEn.style.display = lang==='en' ? 'block' : 'none';
+    const name = en.querySelectorAll('div[style*="font-weight:700"]')[0];
+    if(name) name.style.color = lang==='en' ? 'var(--t1)' : 'var(--t2)';
+    const sub  = en.querySelectorAll('div[style*="font-weight:500"]')[0];
+    if(sub)  sub.style.color  = lang==='en' ? 'var(--a2)' : 'var(--t3)';
+  }
 }
 
 function applyLang(lang) {
@@ -10006,17 +10046,16 @@ function applyLang(lang) {
   // Apply to html lang attr
   document.documentElement.lang = lang;
 
-  // Update lang button borders
-  const ru = document.getElementById('lang-btn-ru');
-  const en = document.getElementById('lang-btn-en');
-  if(ru) ru.style.borderColor = lang==='ru' ? 'var(--a)' : 'var(--e1)';
-  if(en) en.style.borderColor = lang==='en' ? 'var(--a)' : 'var(--e1)';
+  // Update lang button styles
+  _updateLangBtns(lang);
 }
 
 // Apply lang on page load
 document.addEventListener('DOMContentLoaded', function() {
   const lang = (S && S.settings && S.settings.lang) || 'ru';
   if(lang !== 'ru') applyLang(lang);
+  // Always sync button visual state
+  if(typeof _updateLangBtns === 'function') _updateLangBtns(lang);
 });
 </script>
 </body>
