@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="src-tauri/icons/icon.png" width="96" height="96" style="border-radius: 50%"/>
+<img src="src-tauri/icons/icon.png" width="96" height="96"/>
 
 # CONTEXT
 
@@ -11,8 +11,6 @@
 [![Скачать](https://img.shields.io/badge/Скачать-Windows-C8FF00?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/nickdilla-rdp/context/releases/latest)
 [![Релиз](https://img.shields.io/github/v/release/nickdilla-rdp/context?style=for-the-badge&color=C8FF00&labelColor=1a1a1a&label=Версия)](https://github.com/nickdilla-rdp/context/releases)
 [![Лицензия](https://img.shields.io/badge/Лицензия-MIT-888888?style=for-the-badge&labelColor=1a1a1a)](LICENSE)
-
-![CONTEXT Screenshot](https://github.com/nickdilla-rdp/context/releases/latest/download/screenshot.png)
 
 </div>
 
@@ -38,8 +36,6 @@
 ---
 
 ## Установка
-
-### Скачать готовый установщик
 
 Перейди на страницу [Releases](https://github.com/nickdilla-rdp/context/releases/latest) и скачай файл:
 
@@ -76,7 +72,7 @@ CONTEXT не собирает, не передаёт и не хранит ник
 
 ## Разработка
 
-**CONTEXT Team** — независимая разработка · 2024–2025
+**DEEPWORKS Team** — независимая разработка · 2025–2026
 
 Приложение создано с фокусом на минимализм, скорость и настоящую локальную приватность.
 
