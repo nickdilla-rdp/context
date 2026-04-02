@@ -589,9 +589,9 @@ body::after{
   mix-blend-mode:normal;
 }
 #splash-logo-text{
-  font-size:20px;font-weight:700;letter-spacing:.08em;
+  font-size:20px;font-weight:900;letter-spacing:.08em;
   color:var(--t1,#f0f0f0);opacity:.85;
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Unbounded','Bebas Neue',sans-serif;
 }
 #splash-bar{
   width:120px;height:2px;
@@ -4582,7 +4582,7 @@ to   { opacity: 1; transform: translateY(0) scale(1); }
       <button class="set-tab act" onclick="setTab('app')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25" /><path d="M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /></svg> Внешний вид</button>
       <button class="set-tab" onclick="setTab('data')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 0 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" /></svg> Данные</button>
       <button class="set-tab" onclick="setTab('appinfo')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 8l.01 0" /><path d="M11 12l1 0l0 4l1 0" /></svg> Приложение</button>
-      <button class="set-tab" onclick="setTab('reset')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg> <span data-i18n="settings.tab.reset">Сброс</span></button><button class="set-tab" onclick="setTab('lang')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7" /><path d="M9 3v2c0 4.418 -2.239 8 -5 8" /><path d="M5 9c0 2.144 2.952 3.908 6.7 4" /><path d="M12 20l4 -9l4 9" /><path d="M19.1 18h-6.2" /></svg> <span data-i18n="settings.tab.lang">Язык</span></button>
+      <button class="set-tab" onclick="setTab('reset')"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg> <span data-i18n="settings.tab.reset">Сброс</span></button>
     </div>
     <!-- appearance -->
     <div id="set-app" style="display:block">
@@ -4756,19 +4756,19 @@ to   { opacity: 1; transform: translateY(0) scale(1); }
     <!-- app info -->
     <div id="set-appinfo" style="display:none">
       <div class="set-row">
-        <div><div class="set-lbl">Версия приложения</div><div class="set-sub">Текущая установленная версия</div></div>
+        <div><div class="set-lbl" data-i18n="settings.app.version">Версия приложения</div><div class="set-sub" data-i18n="settings.app.version.sub">Текущая установленная версия</div></div>
         <div style="font-size:13px;font-weight:700;color:var(--a);font-family:'DM Mono',monospace" id="settings-version-label">v1.0.0</div>
       </div>
       <div class="set-row">
-        <div><div class="set-lbl">Проверить обновления</div><div class="set-sub" id="update-status-sub">Нажмите, чтобы проверить наличие новой версии</div></div>
-        <button class="btn sec sm" onclick="checkForUpdates()"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg> Проверить</button>
+        <div><div class="set-lbl" data-i18n="settings.app.updates">Проверить обновления</div><div class="set-sub" id="update-status-sub" data-i18n="settings.app.updates.sub">Нажмите, чтобы проверить наличие новой версии</div></div>
+        <button class="btn sec sm" onclick="checkForUpdates()"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></svg> <span data-i18n="settings.app.updates.btn">Проверить</span></button>
       </div>
       <div class="set-row" id="update-install-row" style="display:none">
-        <div><div class="set-lbl" style="color:var(--lgrn)">Доступно обновление!</div><div class="set-sub" id="update-new-version">Новая версия готова к установке</div></div>
-        <button class="btn pri sm" onclick="installUpdate()"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg> Установить</button>
+        <div><div class="set-lbl" style="color:var(--lgrn)" data-i18n="settings.app.update.available">Доступно обновление!</div><div class="set-sub" id="update-new-version">Новая версия готова к установке</div></div>
+        <button class="btn pri sm" onclick="installUpdate()"><svg class="ti-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /><path d="M7 11l5 5l5 -5" /><path d="M12 4l0 12" /></svg> <span data-i18n="settings.app.install.btn">Установить</span></button>
       </div>
       <div class="set-row">
-        <div><div class="set-lbl">Автообновления</div><div class="set-sub">Автоматически загружать и устанавливать обновления</div></div>
+        <div><div class="set-lbl" data-i18n="settings.app.autoupdate">Автообновления</div><div class="set-sub" data-i18n="settings.app.autoupdate.sub">Автоматически загружать и устанавливать обновления</div></div>
         <label class="tog-sw"><input type="checkbox" id="auto-update-chk" onchange="toggleAutoUpdate(this.checked)"><div class="tog-track"></div><div class="tog-thumb"></div></label>
       </div>
       <div style="margin-top:4px;padding:14px;background:var(--b3);border:1px solid var(--e1);border-radius:var(--r2);font-size:11.5px;color:var(--t2);line-height:1.7">
@@ -4779,13 +4779,11 @@ to   { opacity: 1; transform: translateY(0) scale(1); }
         <div>· Исправлено отображение логотипа в светлой теме</div>
         <div>· Добавлен drag-and-drop текста промпта в браузер</div>
       </div>
-    </div>
-
-
-    <!-- lang -->
-    <div id="set-lang" style="display:none">
-      <div style="margin-bottom:16px;font-size:12px;color:var(--t3);line-height:1.6" data-i18n="settings.lang.desc">Выберите язык интерфейса приложения. Изменение применяется мгновенно.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <!-- Language selector -->
+      <div class="set-row" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--e1)">
+        <div><div class="set-lbl" data-i18n="settings.tab.lang">Язык</div><div class="set-sub" data-i18n="settings.lang.desc">Выберите язык интерфейса приложения. Изменение применяется мгновенно.</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
         <button class="lang-opt-btn" id="lang-btn-ru" onclick="setAppLang('ru')" style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--b3);border:2px solid var(--a);border-radius:var(--r2);cursor:pointer;transition:all .2s">
           <span style="font-size:24px">🇷🇺</span>
           <div style="text-align:left">
@@ -4802,6 +4800,8 @@ to   { opacity: 1; transform: translateY(0) scale(1); }
         </button>
       </div>
     </div>
+
+
     <!-- reset -->
     <div id="set-reset" style="display:none">
       <div style="background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.2);border-radius:var(--r2);padding:14px;margin-bottom:16px;font-size:12.5px;color:#f87171;line-height:1.6">⚠ Действия необратимы. Сделайте экспорт перед сбросом.</div>
@@ -7519,13 +7519,15 @@ function toggleCovers(){
 // SETTINGS
 // ════════════════════════════════════════════════════════════
 function setTab(t){
-  ['app','data','appinfo','reset'].forEach(x=>{
+  ['app','data','appinfo','reset','lang'].forEach(x=>{
     const el=$(('set-'+x));
     if(el) el.style.display = (x===t) ? 'block' : 'none';
   });
-  document.querySelectorAll('.set-tab').forEach((b,i)=>
-    b.classList.toggle('act',['app','data','appinfo','reset'][i]===t)
-  );
+  document.querySelectorAll('.set-tab').forEach(b=>{
+    const fn = b.getAttribute('onclick')||'';
+    const m = fn.match(/setTab\('(\w+)'\)/);
+    b.classList.toggle('act', m && m[1]===t);
+  });
   if(t==='appinfo'){
     const chk=$('auto-update-chk'); if(chk) chk.checked=!!(S.settings&&S.settings.autoUpdate);
   }
@@ -9665,6 +9667,8 @@ const I18N = {
     'settings.app.version.sub': 'Текущая установленная версия',
     'settings.app.updates': 'Проверить обновления',
     'settings.app.updates.sub': 'Нажмите, чтобы проверить наличие новой версии',
+    'settings.app.updates.btn': 'Проверить',
+    'settings.app.install.btn': 'Установить',
     'settings.app.autoupdate': 'Автообновления',
     'settings.app.autoupdate.sub': 'Автоматически загружать и устанавливать обновления',
     'settings.app.update.available': 'Доступно обновление!',
@@ -9820,6 +9824,8 @@ Use the buttons below or keyboard shortcuts',
     'settings.app.version.sub': 'Currently installed version',
     'settings.app.updates': 'Check for updates',
     'settings.app.updates.sub': 'Click to check for a new version',
+    'settings.app.updates.btn': 'Check',
+    'settings.app.install.btn': 'Install',
     'settings.app.autoupdate': 'Auto-updates',
     'settings.app.autoupdate.sub': 'Automatically download and install updates',
     'settings.app.update.available': 'Update available!',
