@@ -1,176 +1,89 @@
-# Context — Tauri 2 Desktop App
+<div align="center">
 
-Менеджер промптов. Фронтенд: чистый HTML/CSS/JS.  
-Бэкенд: Rust (Tauri 2). Установщик: `.msi` через WiX Toolset.
+<img src="src-tauri/icons/icon.png" width="96" height="96" style="border-radius: 50%"/>
 
----
+# CONTEXT
 
-## Структура проекта
+### Профессиональный менеджер AI-промптов
 
-```
-context-tauri/
-├── src/
-│   └── index.html          ← Фронтенд (адаптированный под Tauri)
-├── src-tauri/
-│   ├── src/
-│   │   └── main.rs         ← Rust бэкенд (все команды)
-│   ├── icons/              ← Иконки приложения
-│   ├── capabilities/
-│   │   └── default.json    ← Tauri 2 разрешения
-│   ├── tauri.conf.json     ← Главный конфиг
-│   ├── Cargo.toml          ← Rust зависимости
-│   └── build.rs
-├── package.json
-└── README.md
-```
+**Организуй, храни и мгновенно копируй промпты — всё локально, без серверов**
+
+[![Скачать](https://img.shields.io/badge/Скачать-Windows-C8FF00?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/nickdilla-rdp/context/releases/latest)
+[![Релиз](https://img.shields.io/github/v/release/nickdilla-rdp/context?style=for-the-badge&color=C8FF00&labelColor=1a1a1a&label=Версия)](https://github.com/nickdilla-rdp/context/releases)
+[![Лицензия](https://img.shields.io/badge/Лицензия-MIT-888888?style=for-the-badge&labelColor=1a1a1a)](LICENSE)
+
+![CONTEXT Screenshot](https://github.com/nickdilla-rdp/context/releases/latest/download/screenshot.png)
+
+</div>
 
 ---
 
-## Требования
+## Что такое CONTEXT?
 
-### 1. Rust
-```powershell
-winget install Rustlang.Rustup
-rustup update stable
-```
+**CONTEXT** — это менеджер AI-промптов для тех, кто серьёзно работает с языковыми моделями. Приложение позволяет организовывать, хранить, редактировать и мгновенно копировать промпты с поддержкой переменных, медиафайлов и истории версий.
 
-### 2. Node.js (только для CLI Tauri)
-```powershell
-winget install OpenJS.NodeJS.LTS
-```
-
-### 3. WebView2 Runtime
-На Windows 10/11 уже встроен. Для старых машин — включить bootstrapper в tauri.conf.json
-(уже настроено: `"type": "downloadBootstrapper"`).
-
-### 4. WiX Toolset v4 (для сборки MSI)
-```powershell
-dotnet tool install --global wix
-```
-или через winget:
-```powershell
-winget install WixToolset.WixToolset
-```
+Все данные хранятся **только на вашем устройстве**. Никаких серверов, никакой регистрации, никакой слежки.
 
 ---
 
-## Первый запуск
+## Возможности
 
-```powershell
-# 1. Клонировать / распаковать папку context-tauri
-cd context-tauri
-
-# 2. Установить npm зависимости (только Tauri CLI)
-npm install
-
-# 3. Запустить в режиме разработки
-npm run dev
-```
+- **Хранение** — промпты, папки, вложенные коллекции с обложками и тегами
+- **Переменные** — динамические промпты с `{{переменная}}` и вариантами выбора
+- **Сравнение** — side-by-side просмотр двух промптов одновременно
+- **Слияние** — объединяй промпты с настраиваемым разделителем
+- **Статистика** — тепловая карта активности, топ промптов, история буфера
+- **Экспорт** — JSON, Markdown, TXT, медиапапка; импорт обратно в один клик
 
 ---
 
-## Сборка MSI установщика
+## Установка
 
-```powershell
-npm run build
+### Скачать готовый установщик
+
+Перейди на страницу [Releases](https://github.com/nickdilla-rdp/context/releases/latest) и скачай файл:
+
+```
+Context_x.x.x_x64_ru-RU.msi
 ```
 
-Готовый файл появится здесь:
-```
-src-tauri/target/release/bundle/msi/Context_1.0.0_x64_ru-RU.msi
-```
+> **Почему Windows предупреждает?**
+> Windows SmartScreen показывает предупреждение для новых приложений без EV-подписи — это нормально.
+> Нажми **«Подробнее»** → **«Выполнить в любом случае»**. Приложение безопасно.
 
 ---
 
-## Иконки (обязательно!)
+## Конфиденциальность
 
-Tauri требует набор иконок. Самый простой способ — сгенерировать из PNG 1024×1024:
+CONTEXT не собирает, не передаёт и не хранит никаких данных на внешних серверах.
 
-```powershell
-# Поместите icon.png (1024x1024) в src-tauri/icons/
-# Затем выполните:
-npm run tauri icon src-tauri/icons/icon.png
-```
-
-Это автоматически создаст все нужные размеры.
+- Все промпты и настройки хранятся локально на вашем диске
+- Приложение не требует регистрации и не имеет аналитики
+- Не отправляет никаких телеметрических данных
 
 ---
 
-## Настройки WiX в tauri.conf.json
+## Технологии
 
-| Параметр | Описание |
-|---|---|
-| `language` | Язык установщика (`ru-RU`) |
-| `upgradeCode` | **Замените** на свой GUID — генерирует: `[guid]::NewGuid()` в PowerShell |
-| `installMode` | `perMachine` (для всех пользователей) или `perUser` |
-| `shortcutName` | Название ярлыка в меню Пуск |
-| `webviewInstallMode` | `downloadBootstrapper` — скачает WebView2 если нет |
-
-### Генерация GUID (один раз):
-```powershell
-[guid]::NewGuid().ToString().ToUpper()
-# Пример: A1B2C3D4-E5F6-7890-ABCD-EF1234567890
-```
+| Компонент | Технология |
+|-----------|------------|
+| Фронтенд | HTML / CSS / JavaScript |
+| Бэкенд | Rust + Tauri 2 |
+| Установщик | WiX Toolset (.msi) |
+| Платформа | Windows x64 |
 
 ---
 
-## Как работает API Bridge (pywebview → Tauri)
+## Разработка
 
-В `index.html` добавлен shim, который проксирует все старые вызовы:
+**CONTEXT Team** — независимая разработка · 2024–2025
 
-```js
-// Старый код (не трогаем):
-window.pywebview.api.save_state(json)
-window.pywebview.api.save_media(dataUri, filename)
-
-// Shim направляет их в:
-window.__TAURI__.core.invoke('save_state', { json })
-window.__TAURI__.core.invoke('save_media', { dataUri, filename })
-```
-
-Все данные сохраняются в:
-- **Windows**: `%APPDATA%\context\state.json` и `%APPDATA%\context\media\`
+Приложение создано с фокусом на минимализм, скорость и настоящую локальную приватность.
 
 ---
 
-## Оптимизация памяти
+<div align="center">
 
-В `Cargo.toml` настроен release-профиль:
-- `lto = true` — Link-Time Optimization: меньше бинарник
-- `codegen-units = 1` — лучший LTO
-- `panic = "abort"` — нет unwinding стека
-- `strip = true` — убираем debug-символы
+[⬇️ Скачать](https://github.com/nickdilla-rdp/context/releases/latest) · [🌐 Сайт](https://nickdilla-rdp.github.io/context/) · [🐛 Баги](https://github.com/nickdilla-rdp/context/issues)
 
-**Ожидаемое потребление RAM: ~15–35 MB** (против 150–300 MB у Electron).
-
----
-
-## Подпись кода (опционально, для production)
-
-Без подписи Windows показывает предупреждение SmartScreen.
-
-```json
-// В tauri.conf.json, секция bundle.windows:
-"certificateThumbprint": "ВАШ_ОТПЕЧАТОК_СЕРТИФИКАТА",
-"digestAlgorithm": "sha256",
-"timestampUrl": "http://timestamp.digicert.com"
-```
-
-Бесплатный вариант: self-signed сертификат (убирает ошибку, но не SmartScreen).  
-Платный: Code Signing Certificate от DigiCert / Sectigo (~$70/год).
-
----
-
-## Troubleshooting
-
-**`error: failed to run custom build command for tauri-build`**  
-→ Убедитесь что установлен `cargo` и Rust stable toolchain.
-
-**MSI не собирается, нет WiX**  
-→ `dotnet tool install --global wix` и перезапустите терминал.
-
-**Белый экран при запуске**  
-→ Проверьте путь `"frontendDist": "../src"` в `tauri.conf.json`.
-
-**Окно без рамки не перетаскивается**  
-→ Убедитесь что в `capabilities/default.json` есть `"core:window:allow-start-dragging"`.
+</div>
